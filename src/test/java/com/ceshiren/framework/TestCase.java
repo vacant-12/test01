@@ -1,5 +1,6 @@
 package com.ceshiren.framework;
 
+import org.apache.commons.codec.language.bm.Lang;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,7 +32,7 @@ public class TestCase {
     private Object getValue(HashMap<String,Object> step,String key){
         Object value = step.get(key);
         if(value instanceof String){
-            //进行替换，复杂结构支持
+            //进行替换，复杂结构支持需要使用递归
             return ((String)value).replace("${data}",data.get(index));
         }else{
             return value;
@@ -50,9 +51,16 @@ public class TestCase {
             if(step.keySet().contains("quit")){
                 driver.quit();
             }
+            if(step.keySet().contains("sleep")){
+                try {
+                    Thread.sleep((int) getValue(step,"sleep")*1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             if(step.keySet().contains("implicitly_Wait")){
                 driver.manage().timeouts().implicitlyWait(
-                        (int) step.getOrDefault("implicitly_Wait",5),TimeUnit.SECONDS);
+                        (int) getValue(step,"implicitly_Wait",5),TimeUnit.SECONDS);
             }
             if(step.keySet().contains("get")){
                 driver.get(getValue(step,"get").toString());
