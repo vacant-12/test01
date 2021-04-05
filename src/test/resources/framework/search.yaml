@@ -1,0 +1,14 @@
+data:
+  - banane
+  - apple
+
+
+steps:
+  - chrome: {}
+  - implicitly_Wait: 5
+  - get: https://ceshiren.com/
+  - find: { id: search-button}
+  - click: {}
+  - find: { id: search-term}
+  - send_keys: ${data}
+#  - quit: {}
