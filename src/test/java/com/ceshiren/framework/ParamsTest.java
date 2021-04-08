@@ -25,9 +25,9 @@ public class ParamsTest {
 
     static List<TestCase> search() throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        TestCase testCase = mapper.readValue(
-                ParamsTest.class.getResourceAsStream("/framework/search.yaml"),
-                TestCase.class);
+        POTestCase testCase = mapper.readValue(
+                ParamsTest.class.getResourceAsStream("/framework/search_po_test.yaml"),
+                POTestCase.class);
         return testCase.testcase_generate();
 
     }

@@ -1,0 +1,20 @@
+data:
+  - banane
+  - apple
+
+
+steps:
+  - init: [mainPage,com.ceshiren.framework.MainPage]
+  - mainPage.search: {}
+#  - searchPage: {}
+#  - searchPage.search: ${data}
+
+#  - chrome: {}
+#  - implicitly_Wait: 5
+#  - get: https://ceshiren.com/
+#  - find: { id: search-button}
+#  - click: {}
+#  - find: { id: search-term}
+#  - send_keys: ${data}
+#  - sleep: 2
+#  - quit: {}
